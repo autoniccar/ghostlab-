@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GhostLab | Betting Tips</title>
+<meta name="description" content="GhostLab Betting Tips – Unlock unseen edges in sports betting with analytics and precision.">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --card: #1a1a1a;
+    --text: #e5e5e5;
+    --accent: #00ffa3;
+    --glow: rgba(0,255,163,0.6);
+  }
+  * {box-sizing: border-box; margin: 0; padding: 0;}
+  body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 2rem;
+    background-image: radial-gradient(circle at top left, #1a1a1a 0%, #0a0a0a 100%);
+  }
+  header {text-align: center; margin-bottom: 2rem;}
+  h1 {font-size: 2rem; color: var(--accent); text-shadow: 0 0 10px var(--glow);}
+  #bio {max-width: 650px; margin: 1rem auto; font-size: 1rem; text-align: center; opacity: 0.9;}
+
+  /* Sports buttons */
+  .sports {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem; max-width: 800px; margin: 2rem auto;
+  }
+  .sport-card {
+    background: var(--card); padding: 1.25rem; border-radius: 8px;
+    text-align: center; border: 1px solid #333;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+  }
+  .sport-card:hover {transform: translateY(-5px); box-shadow: 0 0 12px var(--glow);}
+  .sport-card h3 {color: var(--accent); margin-bottom: 0.5rem;}
+
+  /* Sections */
+  .section {
+    display: none;
+    background: var(--card);
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem auto;
+    max-width: 700px;
+  }
+  .section.active {display: block;}
+
+  /* Entry form */
+  form {
+    display: flex; flex-direction: column; gap: 1rem;
+    background: #111; padding: 1.5rem; border-radius: 10px;
+    margin-top: 1rem;
+  }
+  input, textarea {
+    background: #121212; border: 1px solid #333; border-radius: 6px;
+    padding: 0.75rem; color: var(--text);
+  }
+  button {
+    background: var(--accent); color: #000; border: none;
+    padding: 0.9rem; border-radius: 8px; font-weight: 600;
+    cursor: pointer; transition: all 0.25s ease;
+  }
+  button:hover {background: #fff; color: #000; box-shadow: 0 0 15px var(--glow);}
+  .entries {margin-top: 1.5rem;}
+  .entry {
+    background: #1a1a1a; border: 1px solid #333;
+    padding: 0.75rem; margin-bottom: 0.75rem; border-radius: 6px;
+  }
+
+  /* Premium */
+  #premium {
+    background: var(--card); padding: 1.75rem; border-radius: 10px;
+    margin: 3rem auto; max-width: 650px; text-align: center;
+    box-shadow: 0 0 10px rgba(0,255,163,0.15);
+  }
+  #premium h2 {margin-bottom: 0.75rem; color: var(--accent);}
+  #premium ul {text-align: left; margin: 1rem auto; max-width: 400px; line-height: 1.7;}
+
+  /* Back to top button */
+  #backToTop {
+    display: none;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: var(--accent);
+    color: #000;
+    padding: 0.75rem 1rem;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 12px var(--glow);
+    border: none;
+    transition: all 0.3s ease;
+  }
+  #backToTop:hover {background: #fff;}
+
+  footer {text-align: center; margin-top: 3rem; font-size: 0.8rem; opacity: 0.6;}
+  @media(max-width:600px){body{padding:1rem;}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>GhostLab Betting Tips</h1>
+</header>
+
+<p id="bio">👻 Unlocking the unseen edges in sports betting. Dive into our lab where advanced analytics meet expert insights, revealing hidden value others miss.</p>
+
+<section class="sports">
+  <div class="sport-card" onclick="showSection('soccer')"><h3>⚽ Soccer</h3><p>Matchday edges from global leagues.</p></div>
+  <div class="sport-card" onclick="showSection('basketball')"><h3>🏀 Basketball</h3><p>NBA, EuroLeague, and more.</p></div>
+  <div class="sport-card" onclick="showSection('tennis')"><h3>🎾 Tennis</h3><p>ATP, WTA, and Challenger metrics.</p></div>
+  <div class="sport-card" onclick="showSection('volleyball')"><h3>🏐 Volleyball</h3><p>Stats from top-tier leagues.</p></div>
+</section>
+
+<!-- SPORT SECTIONS -->
+<div id="soccer" class="section">
+  <h2>⚽ Soccer Entries</h2>
+  <form onsubmit="saveEntry(event,'soccer')">
+    <input type="text" placeholder="Match (e.g. Arsenal vs Chelsea)" required>
+    <input type="text" placeholder="Odds (e.g. 1.85)" required>
+    <textarea placeholder="Prediction / Notes" rows="3" required></textarea>
+    <button>Add Soccer Entry</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<div id="basketball" class="section">
+  <h2>🏀 Basketball Entries</h2>
+  <form onsubmit="saveEntry(event,'basketball')">
+    <input type="text" placeholder="Match (e.g. Lakers vs Celtics)" required>
+    <input type="text" placeholder="Odds (e.g. 2.10)" required>
+    <textarea placeholder="Prediction / Notes" rows="3" required></textarea>
+    <button>Add Basketball Entry</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<div id="tennis" class="section">
+  <h2>🎾 Tennis Entries</h2>
+  <form onsubmit="saveEntry(event,'tennis')">
+    <input type="text" placeholder="Match (e.g. Nadal vs Djokovic)" required>
+    <input type="text" placeholder="Odds (e.g. 1.60)" required>
+    <textarea placeholder="Prediction / Notes" rows="3" required></textarea>
+    <button>Add Tennis Entry</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<div id="volleyball" class="section">
+  <h2>🏐 Volleyball Entries</h2>
+  <form onsubmit="saveEntry(event,'volleyball')">
+    <input type="text" placeholder="Match (e.g. Modena vs Perugia)" required>
+    <input type="text" placeholder="Odds (e.g. 1.95)" required>
+    <textarea placeholder="Prediction / Notes" rows="3" required></textarea>
+    <button>Add Volleyball Entry</button>
+  </form>
+  <div class="entries"></div>
+</div>
+
+<!-- PREMIUM -->
+<section id="premium">
+  <h2>👻 GhostLab Premium – See What Others Don’t</h2>
+  <ul>
+    <li>Exclusive VIP tips with the highest edge</li>
+    <li>Full model write-ups & early-line plays</li>
+    <li>Telegram alerts before odds move</li>
+    <li>Dedicated support & staking advice</li>
+  </ul>
+  <p><strong>₦3,500</strong> / month – cancel any time.</p>
+  <p><em>Payment via Opay</em><br>
+     <strong>Account:</strong> 8032801391 – Igbinovia Egbenayo</p>
+</section>
+
+<footer><small>No refunds. Gamble responsibly. 18+ only.</small></footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="backToTop" onclick="scrollToTop()">↑ Top</button>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  loadEntries(id);
+  window.scrollTo({ top: document.getElementById(id).offsetTop - 20, behavior: 'smooth' });
+}
+
+function saveEntry(e, sport) {
+  e.preventDefault();
+  const form = e.target;
+  const inputs = form.querySelectorAll('input, textarea');
+  const entry = {
+    match: inputs[0].value.trim(),
+    odds: inputs[1].value.trim(),
+    prediction: inputs[2].value.trim()
+  };
+  const key = sport + 'Entries';
+  const entries = JSON.parse(localStorage.getItem(key)) || [];
+  entries.unshift(entry);
+  localStorage.setItem(key, JSON.stringify(entries));
+  form.reset();
+  loadEntries(sport);
+}
+
+function loadEntries(sport) {
+  const key = sport + 'Entries';
+  const entries = JSON.parse(localStorage.getItem(key)) || [];
+  const div = document.querySelector(`#${sport} .entries`);
+  div.innerHTML = entries.length
+    ? entries.map(e => `
+        <div class="entry">
+          <strong>${e.match}</strong><br>
+          Odds: ${e.odds}<br>
+          <em>${e.prediction}</em>
+        </div>
+      `).join('')
+    : '<p style="opacity:.6;text-align:center;">No entries yet.</p>';
+}
+
+/* BACK TO TOP FUNCTION */
+window.onscroll = function() {
+  const btn = document.getElementById("backToTop");
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
